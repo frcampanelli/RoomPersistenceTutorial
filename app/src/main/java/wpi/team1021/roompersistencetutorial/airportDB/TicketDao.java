@@ -27,7 +27,7 @@ public interface TicketDao {
             "INNER JOIN Ticket ON Ticket.flight_id = Flight.id " +
             "INNER JOIN Passenger on Passenger.id = Ticket.passenger_id " +
             "WHERE Passenger.name LIKE :userName " +
-            "AND Ticket.endTime > :after ")
+            "AND Ticket.date > :after ")
     LiveData<List<TicketWithPassengerAndFlight>> findTicketsByNameAfter(String userName, Date after);
 
     @Insert()

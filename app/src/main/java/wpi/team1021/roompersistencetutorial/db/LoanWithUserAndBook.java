@@ -14,12 +14,14 @@
  * limitations under the License.
  */
 
-package com.example.android.persistence.roompersistencetutorial.db;
+package wpi.team1021.roompersistencetutorial.db;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.TypeConverters;
 
 import java.util.Date;
+
+import wpi.team1021.roompersistencetutorial.airportDB.DateConverter;
 
 public class LoanWithUserAndBook {
     public String id;

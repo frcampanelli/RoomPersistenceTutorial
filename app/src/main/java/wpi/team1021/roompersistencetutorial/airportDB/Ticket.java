@@ -7,6 +7,8 @@ import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
 
+import java.util.Date;
+
 @Entity(foreignKeys = {
         @ForeignKey(entity = Flight.class,
                 parentColumns = "id",
@@ -29,4 +31,6 @@ public class Ticket {
 
     @ColumnInfo(name="passenger_id")
     public String passengerId;
+
+    public Date date;
 }
