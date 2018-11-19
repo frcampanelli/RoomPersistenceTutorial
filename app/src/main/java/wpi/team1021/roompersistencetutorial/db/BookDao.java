@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.persistence.roompersistencetutorial.db;
+package wpi.team1021.roompersistencetutorial.db;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;

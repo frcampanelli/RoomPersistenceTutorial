@@ -21,13 +21,16 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import wpi.team1021.roompersistencetutorial.airportDB.AppDatabase;
+import wpi.team1021.roompersistencetutorial.airportDB.Flight;
+import wpi.team1021.roompersistencetutorial.airportDB.Passenger;
+import wpi.team1021.roompersistencetutorial.airportDB.Ticket;
 
 import java.util.Calendar;
 import java.util.Date;
 
 public class DatabaseInitializer {
 
-    // Simulate a blocking operation delaying each Loan insertion with a delay:
+    // Simulate a blocking operation delaying each Ticket insertion with a delay:
     private static final int DELAY_MILLIS = 500;
 
     public static void populateAsync(final AppDatabase db) {
@@ -40,52 +43,56 @@ public class DatabaseInitializer {
         populateWithTestData(db);
     }
 
-    private static void addLoan(final AppDatabase db, final String id,
-                                final User user, final Book book, Date from, Date to) {
-        Loan loan = new Loan();
-        loan.id = id;
-        loan.bookId = book.id;
-        loan.userId = user.id;
-        loan.startTime = from;
-        loan.endTime = to;
-        db.loanModel().insertLoan(loan);
+    private static void addTicket(final AppDatabase db, final String id,
+                                  final Passenger passenger, final Flight flight, final String seat) {
+        Ticket ticket = new Ticket();
+        ticket.id = id;
+        ticket.flightId = flight.id;
+        ticket.passengerId = passenger.id;
+        ticket.seat = seat;
+        db.ticketModel().insertTicket(ticket);
     }
 
-    private static Book addBook(final AppDatabase db, final String id, final String title) {
-        Book book = new Book();
-        book.id = id;
-        book.title = title;
-        db.bookModel().insertBook(book);
-        return book;
+    private static Flight addFlight(final AppDatabase db, final String id, final String flightNumber, final String origin,
+                                    final String destination, final Date takeoffTime, final Date landingTime) {
+        Flight flight = new Flight();
+        flight.id = id;
+        flight.flightNumber = flightNumber;
+        flight.origin = origin;
+        flight.destination = destination;
+        flight.takeoffTime = takeoffTime;
+        flight.landingTime = landingTime;
+        db.flightModel().insertFlight(flight);
+        return flight;
     }
 
-    private static User addUser(final AppDatabase db, final String id, final String name,
+    private static Passenger addPassenger(final AppDatabase db, final String id, final String name,
                                 final String lastName, final int age) {
-        User user = new User();
+        Passenger user = new Passenger();
         user.id = id;
         user.age = age;
         user.name = name;
         user.lastName = lastName;
-        db.userModel().insertUser(user);
+        db.passengerModel().insertPassenger(user);
         return user;
     }
 
     private static void populateWithTestData(AppDatabase db) {
-        db.loanModel().deleteAll();
-        db.userModel().deleteAll();
-        db.bookModel().deleteAll();
+        db.ticketModel().deleteAll();
+        db.passengerModel().deleteAll();
+        db.flightModel().deleteAll();
 
-        User user1 = addUser(db, "1", "Jason", "Seaver", 40);
-        User user2 = addUser(db, "2", "Mike", "Seaver", 12);
-        addUser(db, "3", "Carol", "Seaver", 15);
+        Passenger passenger1 = addPassenger(db, "1", "Jason", "Seaver", 40);
+        Passenger passenger2 = addPassenger(db, "2", "Mike", "Seaver", 12);
+        addPassenger(db, "3", "Carol", "Seaver", 15);
 
-        Book book1 = addBook(db, "1", "Dune");
-        Book book2 = addBook(db, "2", "1984");
-        Book book3 = addBook(db, "3", "The War of the Worlds");
-        Book book4 = addBook(db, "4", "Brave New World");
-        addBook(db, "5", "Foundation");
+        Flight flight1 = addFlight(db, "1", "A001", "Boston", "New York", getTodayPlusDays(0), getTodayPlusDays(1));
+        Flight flight2 = addFlight(db, "2", "A002", "Michigan", "Houston", getTodayPlusDays(0), getTodayPlusDays(1));
+        Flight flight3 = addFlight(db, "3", "A003", "Miami", "Detroit", getTodayPlusDays(0), getTodayPlusDays(0));
+        Flight flight4 = addFlight(db, "4", "A004", "Boston", "London", getTodayPlusDays(0), getTodayPlusDays(2));
+        addFlight(db, "5", "A005", "Los Angeles", "Hawaii", getTodayPlusDays(0), getTodayPlusDays(3));
         try {
-            // Loans are added with a delay, to have time for the UI to react to changes.
+            // Tickets are added with a delay, to have time for the UI to react to changes.
 
             Date today = getTodayPlusDays(0);
             Date yesterday = getTodayPlusDays(-1);
@@ -93,16 +100,16 @@ public class DatabaseInitializer {
             Date lastWeek = getTodayPlusDays(-7);
             Date twoWeeksAgo = getTodayPlusDays(-14);
 
-            addLoan(db, "1", user1, book1, twoWeeksAgo, lastWeek);
+            addTicket(db, "1", passenger1, flight1, "1A");
             Thread.sleep(DELAY_MILLIS);
-            addLoan(db, "2", user2, book1, lastWeek, yesterday);
+            addTicket(db, "2", passenger2, flight1, "1B");
             Thread.sleep(DELAY_MILLIS);
-            addLoan(db, "3", user2, book2, lastWeek, today);
+            addTicket(db, "3", passenger2, flight2, "17D");
             Thread.sleep(DELAY_MILLIS);
-            addLoan(db, "4", user2, book3, lastWeek, twoDaysAgo);
+            addTicket(db, "4", passenger2, flight3, "8D");
             Thread.sleep(DELAY_MILLIS);
-            addLoan(db, "5", user2, book4, lastWeek, today);
-            Log.d("DB", "Added loans");
+            addTicket(db, "5", passenger2, flight4, "20C");
+            Log.d("DB", "Added tickets");
 
         } catch (InterruptedException e) {
             e.printStackTrace();
