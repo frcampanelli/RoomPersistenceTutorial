@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.persistence.roompersistencetutorial.step2;
+package wpi.team1021.roompersistencetutorial.step2;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -22,12 +22,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.android.codelabs.persistence.R;
-import com.example.android.persistence.roompersistencetutorial.db.AppDatabase;
-import com.example.android.persistence.roompersistencetutorial.db.Book;
-import com.example.android.persistence.roompersistencetutorial.db.utils.DatabaseInitializer;
-
 import java.util.List;
+
+import wpi.team1021.roompersistencetutorial.db.AppDatabase;
+import wpi.team1021.roompersistencetutorial.db.Book;
+import wpi.team1021.roompersistencetutorial.db.utils.DatabaseInitializer;
 
 public class JankShowUserActivity extends AppCompatActivity {
 

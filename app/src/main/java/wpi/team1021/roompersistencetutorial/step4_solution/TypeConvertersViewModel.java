@@ -20,13 +20,14 @@ import android.app.Application;
 
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
-import wpi.team1021.roompersistencetutorial.db.AppDatabase;
-import wpi.team1021.roompersistencetutorial.db.Book;
-import wpi.team1021.roompersistencetutorial.db.utils.DatabaseInitializer;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import wpi.team1021.roompersistencetutorial.db.AppDatabase;
+import wpi.team1021.roompersistencetutorial.db.Book;
+import wpi.team1021.roompersistencetutorial.db.utils.DatabaseInitializer;
 
 
 public class TypeConvertersViewModel extends AndroidViewModel {

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.persistence.roompersistencetutorial.step3;
+package wpi.team1021.roompersistencetutorial.step3;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -23,10 +23,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.android.codelabs.persistence.R;
-import com.example.android.persistence.roompersistencetutorial.db.Book;
-
 import java.util.List;
+
+import wpi.team1021.roompersistencetutorial.db.Book;
 
 public class BooksBorrowedByUserActivity extends AppCompatActivity {
 

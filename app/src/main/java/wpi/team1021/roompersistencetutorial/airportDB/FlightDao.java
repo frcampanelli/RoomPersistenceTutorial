@@ -26,41 +26,41 @@ public interface FlightDao {
             "INNER JOIN Passenger on Passenger.id = Ticket.passenger_id " +
             "WHERE Passenger.name LIKE :passengerName"
     )
-    LiveData<List<Flight>> findFlightsBorrowedByName(String passengerName);
+    LiveData<List<Flight>> findFlightsTakenByName(String passengerName);
 
     @Query("SELECT * FROM Flight " +
             "INNER JOIN Ticket ON Ticket.Flight_id = Flight.id " +
             "INNER JOIN Passenger on Passenger.id = Ticket.passenger_id " +
             "WHERE Passenger.name LIKE :passengerName " +
-            "AND Ticket.endTime > :after "
+            "AND Flight.takeoffTime > :after "
     )
-    LiveData<List<Flight>> findFlightsBorrowedByNameAfter(String passengerName, Date after);
+    LiveData<List<Flight>> findFlightsTakenByNameAfter(String passengerName, Date after);
 
     @Query("SELECT * FROM Flight " +
             "INNER JOIN Ticket ON Ticket.Flight_id = Flight.id " +
             "INNER JOIN Passenger on Passenger.id = Ticket.passenger_id " +
             "WHERE Passenger.name LIKE :passengerName"
     )
-    List<Flight> findFlightsBorrowedByNameSync(String passengerName);
+    List<Flight> findFlightsTakenByNameSync(String passengerName);
 
     @Query("SELECT * FROM Flight " +
             "INNER JOIN Ticket ON Ticket.Flight_id LIKE Flight.id " +
             "WHERE Ticket.passenger_id LIKE :passengerId "
     )
-    LiveData<List<Flight>> findFlightsBorrowedByPassenger(String passengerId);
+    LiveData<List<Flight>> findFlightsTakenByPassenger(String passengerId);
 
     @Query("SELECT * FROM Flight " +
             "INNER JOIN Ticket ON Ticket.Flight_id LIKE Flight.id " +
             "WHERE Ticket.passenger_id LIKE :passengerId " +
-            "AND Ticket.endTime > :after "
+            "AND Flight.takeoffTime > :after "
     )
-    LiveData<List<Flight>> findFlightsBorrowedByPassengerAfter(String passengerId, Date after);
+    LiveData<List<Flight>> findFlightsTakenByPassengerAfter(String passengerId, Date after);
 
     @Query("SELECT * FROM Flight " +
             "INNER JOIN Ticket ON Ticket.Flight_id LIKE Flight.id " +
             "WHERE Ticket.passenger_id LIKE :passengerId "
     )
-    List<Flight> findFlightsBorrowedByPassengerSync(String passengerId);
+    List<Flight> findFlightsTakenByPassengerSync(String passengerId);
 
     @Query("SELECT * FROM Flight")
     LiveData<List<Flight>> findAllFlights();

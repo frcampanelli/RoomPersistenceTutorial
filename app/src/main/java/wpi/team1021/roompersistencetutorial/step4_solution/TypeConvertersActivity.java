@@ -24,10 +24,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.List;
-
-import wpi.team1021.R;
 import wpi.team1021.roompersistencetutorial.db.Book;
+
+import java.util.List;
 
 public class TypeConvertersActivity extends AppCompatActivity {
 

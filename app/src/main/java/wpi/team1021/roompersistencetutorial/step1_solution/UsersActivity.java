@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package com.example.android.persistence.roompersistencetutorial.step1_solution;
+package wpi.team1021.roompersistencetutorial.step1_solution;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import com.example.android.codelabs.persistence.R;
-import com.example.android.persistence.roompersistencetutorial.db.AppDatabase;
-import com.example.android.persistence.roompersistencetutorial.db.User;
-import com.example.android.persistence.roompersistencetutorial.db.utils.DatabaseInitializer;
 
 import java.util.List;
 import java.util.Locale;
+
+import wpi.team1021.roompersistencetutorial.db.AppDatabase;
+import wpi.team1021.roompersistencetutorial.db.User;
+import wpi.team1021.roompersistencetutorial.db.utils.DatabaseInitializer;
 
 public class UsersActivity extends AppCompatActivity {
 

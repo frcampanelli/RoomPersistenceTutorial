@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.persistence.roompersistencetutorial.step5;
+package wpi.team1021.roompersistencetutorial.step5;
 
 import android.app.Application;
 import android.arch.core.util.Function;
@@ -22,15 +22,16 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Transformations;
 
-import com.example.android.persistence.roompersistencetutorial.db.AppDatabase;
-import com.example.android.persistence.roompersistencetutorial.db.LoanWithUserAndBook;
-import com.example.android.persistence.roompersistencetutorial.db.utils.DatabaseInitializer;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import wpi.team1021.roompersistencetutorial.db.AppDatabase;
+import wpi.team1021.roompersistencetutorial.db.LoanWithUserAndBook;
+import wpi.team1021.roompersistencetutorial.db.utils.DatabaseInitializer;
 
 
 public class CustomResultViewModel extends AndroidViewModel {

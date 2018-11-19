@@ -14,17 +14,18 @@
  * limitations under the License.
  */
 
-package com.example.android.persistence.roompersistencetutorial.step3_solution;
+package wpi.team1021.roompersistencetutorial.step3_solution;
 
 import android.app.Application;
 
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
-import com.example.android.persistence.roompersistencetutorial.db.AppDatabase;
-import com.example.android.persistence.roompersistencetutorial.db.Book;
-import com.example.android.persistence.roompersistencetutorial.db.utils.DatabaseInitializer;
 
 import java.util.List;
+
+import wpi.team1021.roompersistencetutorial.db.AppDatabase;
+import wpi.team1021.roompersistencetutorial.db.Book;
+import wpi.team1021.roompersistencetutorial.db.utils.DatabaseInitializer;
 
 
 public class BooksBorrowedByUserViewModel extends AndroidViewModel {

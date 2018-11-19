@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.persistence.roompersistencetutorial.step5_solution;
+package wpi.team1021.roompersistencetutorial.step5_solution;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -24,7 +24,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.android.codelabs.persistence.R;
 
 
 public class CustomResultUserActivity extends AppCompatActivity {
