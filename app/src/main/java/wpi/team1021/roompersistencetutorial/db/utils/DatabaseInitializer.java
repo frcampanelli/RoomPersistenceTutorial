@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package com.example.android.persistence.roompersistencetutorial.db.utils;
+package wpi.team1021.roompersistencetutorial.db.utils;
 
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.example.android.persistence.roompersistencetutorial.db.AppDatabase;
-import com.example.android.persistence.roompersistencetutorial.db.Book;
-import com.example.android.persistence.roompersistencetutorial.db.Loan;
-import com.example.android.persistence.roompersistencetutorial.db.User;
-
 import java.util.Calendar;
 import java.util.Date;
+
+import wpi.team1021.roompersistencetutorial.db.AppDatabase;
+import wpi.team1021.roompersistencetutorial.db.Book;
+import wpi.team1021.roompersistencetutorial.db.Loan;
+import wpi.team1021.roompersistencetutorial.db.User;
 
 public class DatabaseInitializer {
 

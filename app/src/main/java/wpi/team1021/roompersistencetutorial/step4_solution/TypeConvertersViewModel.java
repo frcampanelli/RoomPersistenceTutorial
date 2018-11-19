@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.example.android.persistence.roompersistencetutorial.step4_solution;
+package wpi.team1021.roompersistencetutorial.step4_solution;
 
 import android.app.Application;
 
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
-import com.example.android.persistence.roompersistencetutorial.db.AppDatabase;
-import com.example.android.persistence.roompersistencetutorial.db.Book;
-import com.example.android.persistence.roompersistencetutorial.db.utils.DatabaseInitializer;
+import wpi.team1021.roompersistencetutorial.db.AppDatabase;
+import wpi.team1021.roompersistencetutorial.db.Book;
+import wpi.team1021.roompersistencetutorial.db.utils.DatabaseInitializer;
 
 import java.util.Calendar;
 import java.util.Date;

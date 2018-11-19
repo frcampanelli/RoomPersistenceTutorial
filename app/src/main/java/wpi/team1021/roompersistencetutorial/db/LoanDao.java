@@ -23,8 +23,6 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.TypeConverters;
 
-import com.example.android.persistence.roompersistencetutorial.db.Loan;
-
 import java.util.Date;
 import java.util.List;
 
