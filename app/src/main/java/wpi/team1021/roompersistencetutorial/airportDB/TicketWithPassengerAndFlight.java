@@ -26,12 +26,8 @@ import wpi.team1021.roompersistencetutorial.airportDB.DateConverter;
 public class TicketWithPassengerAndFlight {
     public String id;
 
-    @ColumnInfo(name="flightNumber")
-    public String flightNumber;
-
     @ColumnInfo(name="name")
     public String passengerName;
 
-    @TypeConverters(DateConverter.class)
-    public Date date;
+    public String seat;
 }

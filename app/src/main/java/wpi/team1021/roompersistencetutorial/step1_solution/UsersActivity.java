@@ -24,6 +24,7 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.Locale;
 
+import wpi.team1021.R;
 import wpi.team1021.roompersistencetutorial.db.AppDatabase;
 import wpi.team1021.roompersistencetutorial.db.User;
 import wpi.team1021.roompersistencetutorial.db.utils.DatabaseInitializer;

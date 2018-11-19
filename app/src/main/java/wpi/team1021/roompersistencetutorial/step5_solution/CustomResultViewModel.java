@@ -32,7 +32,6 @@ import wpi.team1021.roompersistencetutorial.db.AppDatabase;
 import wpi.team1021.roompersistencetutorial.db.LoanWithUserAndBook;
 import wpi.team1021.roompersistencetutorial.db.utils.DatabaseInitializer;
 
-
 public class CustomResultViewModel extends AndroidViewModel {
 
     private LiveData<String> mLoansResult;

@@ -53,11 +53,10 @@ public class DatabaseInitializer {
         db.ticketModel().insertTicket(ticket);
     }
 
-    private static Flight addFlight(final AppDatabase db, final String id, final String flightNumber, final String origin,
+    private static Flight addFlight(final AppDatabase db, final String id, final String origin,
                                     final String destination, final Date takeoffTime, final Date landingTime) {
         Flight flight = new Flight();
         flight.id = id;
-        flight.flightNumber = flightNumber;
         flight.origin = origin;
         flight.destination = destination;
         flight.takeoffTime = takeoffTime;
@@ -86,11 +85,11 @@ public class DatabaseInitializer {
         Passenger passenger2 = addPassenger(db, "2", "Mike", "Seaver", 12);
         addPassenger(db, "3", "Carol", "Seaver", 15);
 
-        Flight flight1 = addFlight(db, "1", "A001", "Boston", "New York", getTodayPlusDays(0), getTodayPlusDays(1));
-        Flight flight2 = addFlight(db, "2", "A002", "Michigan", "Houston", getTodayPlusDays(0), getTodayPlusDays(1));
-        Flight flight3 = addFlight(db, "3", "A003", "Miami", "Detroit", getTodayPlusDays(0), getTodayPlusDays(0));
-        Flight flight4 = addFlight(db, "4", "A004", "Boston", "London", getTodayPlusDays(0), getTodayPlusDays(2));
-        addFlight(db, "5", "A005", "Los Angeles", "Hawaii", getTodayPlusDays(0), getTodayPlusDays(3));
+        Flight flight1 = addFlight(db, "1", "Boston", "New York", getTodayPlusDays(0), getTodayPlusDays(1));
+        Flight flight2 = addFlight(db, "2", "Michigan", "Houston", getTodayPlusDays(0), getTodayPlusDays(1));
+        Flight flight3 = addFlight(db, "3", "Miami", "Detroit", getTodayPlusDays(0), getTodayPlusDays(0));
+        Flight flight4 = addFlight(db, "4", "Boston", "London", getTodayPlusDays(0), getTodayPlusDays(2));
+        addFlight(db, "5", "Los Angeles", "Hawaii", getTodayPlusDays(0), getTodayPlusDays(3));
         try {
             // Tickets are added with a delay, to have time for the UI to react to changes.
 

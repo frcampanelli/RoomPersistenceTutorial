@@ -24,6 +24,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import wpi.team1021.R;
 
 
 public class CustomResultActivity extends AppCompatActivity {

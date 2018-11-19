@@ -32,5 +32,4 @@ public class Ticket {
     @ColumnInfo(name="passenger_id")
     public String passengerId;
 
-    public Date date;
 }

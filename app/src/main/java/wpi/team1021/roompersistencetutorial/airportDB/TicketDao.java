@@ -16,18 +16,18 @@ public interface TicketDao {
     @Query("SELECT * From Ticket")
     LiveData<List<Ticket>> findAllTickets();
 
-    @Query("SELECT Ticket.id, Flight.flightNumber, Passenger.name, Ticket.seat " +
+    @Query("SELECT Ticket.id, Passenger.name, Ticket.seat " +
             "From Ticket " +
             "INNER JOIN Flight ON Ticket.flight_id = Flight.id " +
             "INNER JOIN Passenger ON Ticket.passenger_id = Passenger.id ")
     LiveData<List<TicketWithPassengerAndFlight>> findAllWithPassengerAndFlight();
 
-    @Query("SELECT Ticket.id, Flight.flightNumber as flightNumber, Passenger.name as name, Ticket.seat " +
+    @Query("SELECT Ticket.id, Passenger.name as name, Ticket.seat " +
             "FROM Flight " +
             "INNER JOIN Ticket ON Ticket.flight_id = Flight.id " +
             "INNER JOIN Passenger on Passenger.id = Ticket.passenger_id " +
             "WHERE Passenger.name LIKE :userName " +
-            "AND Ticket.date > :after ")
+            "AND Flight.takeoffTime > :after ")
     LiveData<List<TicketWithPassengerAndFlight>> findTicketsByNameAfter(String userName, Date after);
 
     @Insert()

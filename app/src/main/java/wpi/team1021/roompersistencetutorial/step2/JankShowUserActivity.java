@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import wpi.team1021.R;
 import wpi.team1021.roompersistencetutorial.db.AppDatabase;
 import wpi.team1021.roompersistencetutorial.db.Book;
 import wpi.team1021.roompersistencetutorial.db.utils.DatabaseInitializer;
@@ -67,7 +68,7 @@ public class JankShowUserActivity extends AppCompatActivity {
     }
 
     private void populateDb() {
-        DatabaseInitializer.populateSync(mDb);
+        DatabaseInitializer.populateAsync(mDb);
     }
 
     private void fetchData() {

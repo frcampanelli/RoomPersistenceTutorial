@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import wpi.team1021.R;
 import wpi.team1021.roompersistencetutorial.db.Book;
 
 public class BooksBorrowedByUserActivity extends AppCompatActivity {

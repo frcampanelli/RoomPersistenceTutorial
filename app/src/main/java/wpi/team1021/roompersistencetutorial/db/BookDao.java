@@ -34,17 +34,17 @@ import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 @TypeConverters(DateConverter.class)
 public interface BookDao {
 
-    @Query("select * from Book where id = :id")
+    @Query("select * from Book where Book.id = :id")
     Book loadBookById(int id);
 
-    @Query("SELECT * FROM Book " +
+    @Query("SELECT Book.id, Book.title FROM Book " +
             "INNER JOIN Loan ON Loan.book_id = Book.id " +
             "INNER JOIN User on User.id = Loan.user_id " +
             "WHERE User.name LIKE :userName"
     )
     LiveData<List<Book>> findBooksBorrowedByName(String userName);
 
-    @Query("SELECT * FROM Book " +
+    @Query("SELECT Book.id, Book.title FROM Book " +
             "INNER JOIN Loan ON Loan.book_id = Book.id " +
             "INNER JOIN User on User.id = Loan.user_id " +
             "WHERE User.name LIKE :userName " +
@@ -52,27 +52,27 @@ public interface BookDao {
     )
     LiveData<List<Book>> findBooksBorrowedByNameAfter(String userName, Date after);
 
-    @Query("SELECT * FROM Book " +
+    @Query("SELECT Book.id, Book.title FROM Book " +
             "INNER JOIN Loan ON Loan.book_id = Book.id " +
             "INNER JOIN User on User.id = Loan.user_id " +
             "WHERE User.name LIKE :userName"
     )
     List<Book> findBooksBorrowedByNameSync(String userName);
 
-    @Query("SELECT * FROM Book " +
+    @Query("SELECT Book.id, Book.title FROM Book " +
             "INNER JOIN Loan ON Loan.book_id LIKE Book.id " +
             "WHERE Loan.user_id LIKE :userId "
     )
     LiveData<List<Book>> findBooksBorrowedByUser(String userId);
 
-    @Query("SELECT * FROM Book " +
+    @Query("SELECT Book.id, Book.title FROM Book " +
             "INNER JOIN Loan ON Loan.book_id LIKE Book.id " +
             "WHERE Loan.user_id LIKE :userId " +
             "AND Loan.endTime > :after "
     )
     LiveData<List<Book>> findBooksBorrowedByUserAfter(String userId, Date after);
 
-    @Query("SELECT * FROM Book " +
+    @Query("SELECT Book.id, Book.title FROM Book " +
             "INNER JOIN Loan ON Loan.book_id LIKE Book.id " +
             "WHERE Loan.user_id LIKE :userId "
     )
