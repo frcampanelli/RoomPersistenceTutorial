@@ -25,7 +25,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import wpi.team1021.R;
-import wpi.team1021.roompersistencetutorial.db.Book;
+import wpi.team1021.roompersistencetutorial.airportDB.Flight;
 
 import java.util.List;
 
@@ -33,43 +33,48 @@ public class TypeConvertersActivity extends AppCompatActivity {
 
     private TypeConvertersViewModel mViewModel;
 
-    private TextView mBooksTextView;
+    private TextView mFlightsTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.db_activity);
-        mBooksTextView = findViewById(R.id.passengers_tv);
+        setContentView(R.layout.db_activity2);
+        mFlightsTextView = findViewById(R.id.flights_tv);
 
         // Get a reference to the ViewModel for this screen.
         mViewModel = ViewModelProviders.of(this).get(TypeConvertersViewModel.class);
 
         // Update the UI whenever there's a change in the ViewModel's data.
-        subscribeUiBooks();
+        subscribeUiFlights();
     }
 
-    public void onRefreshBtClicked(View view) {
+    public void onRefreshBtClicked2(View view) {
         mViewModel.createDb();
     }
 
-    private void subscribeUiBooks() {
-        mViewModel.getBooks().observe(this, new Observer<List<Book>>() {
+    private void subscribeUiFlights() {
+        mViewModel.getFlights().observe(this, new Observer<List<Flight>>() {
             @Override
-            public void onChanged(@NonNull final List<Book> books) {
-                showBooksInUi(books);
+            public void onChanged(@NonNull final List<Flight> flights) {
+                showFlightsInUi(flights);
             }
         });
     }
 
-    private void showBooksInUi(final @NonNull List<Book> books) {
+    private void showFlightsInUi(final @NonNull List<Flight> flights) {
         StringBuilder sb = new StringBuilder();
 
-        for (Book book : books) {
-            sb.append(book.title);
+        for (Flight flight : flights) {
+            sb.append("Flight id: ");
+            sb.append(flight.id);
+            sb.append(", origin: ");
+            sb.append(flight.origin);
+            sb.append(", destination: ");
+            sb.append(flight.destination);
             sb.append("\n");
 
         }
-        mBooksTextView.setText(sb.toString());
+        mFlightsTextView.setText(sb.toString());
     }
 }
