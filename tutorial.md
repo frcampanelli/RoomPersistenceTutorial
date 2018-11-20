@@ -89,7 +89,7 @@ public String passengerId;
 ```
 The `@ColumnInfo` annotation tells Room exactly how the columns should be named in the internal database, so it matches the forgien key declarations.  
 
-## Create DAOs
+## Step 1 - Create DAOs
 
 A Data Access Object (DAO) is an abstract class or interface that includes methods to define database queries. The annotated methods in this class are used to generate the corresponding SQL at compile time.  
 These queries are annoted with `@Query` and contain the actual SQL queries that run when the method is called.  
@@ -139,9 +139,92 @@ List<Flight> flights = mDb.flightModel().findAllFlightsByDestination("New York")
 Run the app again and you should see that only flights from New York are listed:  
 ![Part1 solution](imgs/part1sol.png)
 
-## Create ViewModel and LiveData
+>Caution: The operation added in this step runs on the main thread. However input and output operations must be executed in the background. At this stage, you are probably not noticing any performance problems because the queries are simple and the database is stored in memory, rather than on disk. Also, placing all this logic in the activity is not considered best practice. We fix these problems in future steps.  
 
-## Create Custom Type Converters
+## Step 2 - Entity Relationships
+
+Recall the `Ticket` class and how it had `@ForgienKey` relations set up.  
+In this step we will show how these can be used with queries to get data across entities.  
+Review the following annotated query from `PassengerDao`:  
+```
+@Query("SELECT Passenger.id, Passenger.name, Passenger.lastName, Passenger.age FROM Passenger " +
+    "JOIN Ticket ON Ticket.passenger_id = Passenger.id " +
+    "JOIN Flight ON Ticket.flight_id = Flight.id " +
+    "WHERE Flight.destination LIKE :destination"
+)
+List<Passenger> findPassengersFlyingToDestSync(String destination);
+```
+Create a run configuration for `step2` and run the app to see passengers that are flying to New York:
+![Part2](imgs/part2.png)
+
+You may notice a small performance problem when opening the app; the UI is blocked while the database is being populated.  
+This operation is purposely slow, to simulate a worst-case scenario.
+
+The database is popualting on the main UI thread. To change this remove the following code in `BadShowUserActivity`:
+```
+DatabaseInitializer.populateSync(mDb);
+```
+Replace the code you removed with the following statement, to switch to using an asynchronous task to populate the data:
+```
+DatabaseInitializer.populateAsync(mDb);
+```
+
+Run the app again, and notice that the list has no entries until you click the refresh button. This is becuase of a race condition. The databse is being populated in the background while the UI is being drawn.  
+The query results arrive before `Ticket` is populated. Waiting a few seconds and then pressing *Refresh* will update the list to show the proper information.
+
+## Step 3 - Create ViewModel and LiveData
+
+In this step, you add LiveData, a lifecycle-aware component which can be observed, typically described as an observable.  
+Simply wrapping your @Query return type with LiveData provides you with database observers for minimal extra effort.  
+You also move the reference to the database, from the activity, to a ViewModel.
+
+Explore the `step3` package. `PassengersFlyingToDestActivity` implements a `PassengersFlyingToDestViewModel`. This allows the app to automatically update the list of passengers as the database populates.  
+Complete the `subscribeUiPassengers` method as follows to attach to the ViewModel:
+```
+private void subscribeUiPassengers() {
+    mViewModel.passengers.observe(this, new Observer<List<Passenger>>() {
+        @Override
+        public void onChanged(@NonNull final List<Passenger> passengers) {
+            showPassengersInUi(passengers);
+        }
+    });
+}
+```
+Create and run the `step3` run configuration and notice how the list smoothly updates without needing to *Refresh*
+![Part 3](imgs/part3sol.png)
+
+## Step 4 - Create Custom Type Converters
+
+Since SQLite only supports a few datatypes, sometimes certian Java objects will need to be represented differently in the database.  
+This is solved with `@TypeConverters`.  
+Open up `DateConverter` in the `airportDB` package and see how each method is annotated with `@TypeConverter`:
+```
+public class DateConverter {
+    @TypeConverter
+    public static Date toDate(Long timestamp) {
+        return timestamp == null ? null : new Date(timestamp);
+    }
+
+    @TypeConverter
+    public static Long toTimestamp(Date date) {
+        return date == null ? null : date.getTime();
+    }
+}
+```
+
+The `java.util.Date` object will automatically be converted to a `Long`. This is useful when creating a query that accepts a Date:
+```
+@Query("SELECT * FROM Flight WHERE landingTime > :landingTime")
+LiveData<List<Flight>> findAllFlightsByLandingTime(Date landingTime);
+```
+This query is called in the ViewModel:
+```
+mFlights = mDb.flightModel().findAllFlightsByLandingTime(tomorrow);
+```
+Create and run the `step4` configuration and see that only flights that land tomorrow are shown:
+![Part4](imgs/part4sol.png)
+
+You can view the source code for the `DatabaseInitializer` class for additional details on what initial data is being inserted and how initialization is implemented.
 
 ## Step 5 - Custom Query Result Objects
 
