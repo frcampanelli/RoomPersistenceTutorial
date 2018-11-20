@@ -45,7 +45,6 @@ public class CustomResultViewModel extends AndroidViewModel {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DATE, 1);
         Date tomorrow = calendar.getTime();
-        // TODO: Modify this query to show only recent flights from a specific passenger
         LiveData<List<TicketWithPassengerAndFlight>> loans
                 = mDb.ticketModel().findTicketsByPassengerAndLandingTime("Mike", tomorrow);
 

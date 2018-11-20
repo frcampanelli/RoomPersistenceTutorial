@@ -225,4 +225,25 @@ Create and run the `step4` configuration and see that only flights that land tom
 ![Part4](imgs/part4sol.png)
 
 You can view the source code for the `DatabaseInitializer` class for additional details on what initial data is being inserted and how initialization is implemented.
-## Custom Queries
+
+## Step 5 - Custom Query Result Objects
+
+Custom query result objects let us hold and possibly display more information than what regular query result objects can. For example, we want to show the flights of a specific passenger, in this case Mike, that land anytime tomorrow and beyond.
+
+![Part5](imgs/part5sol.png)
+
+To do this we use a query that gets data from both Flights and Passenger.
+
+```
+@Query("SELECT * " +
+        "FROM Flight " +
+        "INNER JOIN Ticket ON Ticket.flight_id = Flight.id " +
+        "INNER JOIN Passenger on Passenger.id = Ticket.passenger_id " +
+        "WHERE Passenger.name LIKE :firstName " +
+        "AND Flight.landingTime > :landingTime ")
+LiveData<List<TicketWithPassengerAndFlight>> findTicketsByPassengerAndLandingTime(String firstName, Date landingTime);
+```
+
+This returns a query result object that we define in the `TicketWithPassengerAndFlight` class. The fields returned from the query must match the fields in the class. This is verified at compile time, and raises a warning if there is a mismatch.
+
+
