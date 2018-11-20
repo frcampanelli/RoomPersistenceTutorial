@@ -170,7 +170,7 @@ DatabaseInitializer.populateAsync(mDb);
 ```
 
 Run the app again, and notice that the list has no entries until you click the refresh button. This is becuase of a race condition. The databse is being populated in the background while the UI is being drawn.  
-The query results arrive before `Ticket` is populated. Waiting a few seconds and then pressing *Refresh* will update the list to show the proper information.
+The query results arrive before `Ticket` is populated. Waiting a few seconds and then pressing **Refresh** will update the list to show the proper information.
 
 ## Step 3 - Create ViewModel and LiveData
 
@@ -190,7 +190,7 @@ private void subscribeUiPassengers() {
     });
 }
 ```
-Create and run the `step3` run configuration and notice how the list smoothly updates without needing to *Refresh*
+Create and run the `step3` run configuration and notice how the list smoothly updates without needing to **Refresh**
 ![Part 3](imgs/part3sol.png)
 
 ## Step 4 - Create Custom Type Converters
@@ -245,5 +245,3 @@ LiveData<List<TicketWithPassengerAndFlight>> findTicketsByPassengerAndLandingTim
 ```
 
 This returns a query result object that we define in the `TicketWithPassengerAndFlight` class. The fields returned from the query must match the fields in the class. This is verified at compile time, and raises a warning if there is a mismatch.
-
-
