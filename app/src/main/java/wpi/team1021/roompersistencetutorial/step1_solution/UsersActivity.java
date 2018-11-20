@@ -25,15 +25,15 @@ import java.util.List;
 import java.util.Locale;
 
 import wpi.team1021.R;
-import wpi.team1021.roompersistencetutorial.db.AppDatabase;
-import wpi.team1021.roompersistencetutorial.db.User;
-import wpi.team1021.roompersistencetutorial.db.utils.DatabaseInitializer;
+import wpi.team1021.roompersistencetutorial.airportDB.AppDatabase;
+import wpi.team1021.roompersistencetutorial.airportDB.utils.DatabaseInitializer;
+import wpi.team1021.roompersistencetutorial.airportDB.Flight;
 
 public class UsersActivity extends AppCompatActivity {
 
     private AppDatabase mDb;
 
-    private TextView mYoungUsersTextView;
+    private TextView mFlightsTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class UsersActivity extends AppCompatActivity {
 
         setContentView(R.layout.db_activity1);
 
-        mYoungUsersTextView = findViewById(R.id.young_users_tv);
+        mFlightsTextView = findViewById(R.id.flights_tv);
 
         // Note: Db references should not be in an activity.
         mDb = AppDatabase.getInMemoryDatabase(getApplicationContext());
@@ -64,11 +64,11 @@ public class UsersActivity extends AppCompatActivity {
     private void fetchData() {
         // Note: this kind of logic should not be in an activity.
         StringBuilder sb = new StringBuilder();
-        List<User> youngUsers = mDb.userModel().findUsersYoungerThanSolution(35);
-        for (User youngUser : youngUsers) {
+        List<Flight> flights = mDb.flightModel().findAllFlightsByDestinationSolution("New York");
+        for (Flight flight : flights) {
             sb.append(String.format(Locale.US,
-                    "%s, %s (%d)\n", youngUser.lastName, youngUser.name, youngUser.age));
+                    "Flight id: %s, origin: %s, destination: %s\n", flight.id, flight.origin, flight.destination));
         }
-        mYoungUsersTextView.setText(sb);
+        mFlightsTextView.setText(sb);
     }
 }

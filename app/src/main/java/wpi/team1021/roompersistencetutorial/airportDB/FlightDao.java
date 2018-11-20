@@ -29,6 +29,12 @@ public interface FlightDao {
     @Query("SELECT * FROM Flight")
     List<Flight> findAllFlightsSync();
 
+    @Query("SELECT * FROM Flight WHERE :destination = :destination") //TODO fix this query!
+    List<Flight> findAllFlightsByDestination(String destination);
+
+    @Query("SELECT * FROM Flight WHERE destination = :destination")
+    List<Flight> findAllFlightsByDestinationSolution(String destination);
+
     @Insert(onConflict = IGNORE)
     void insertFlight(Flight Flight);
 
