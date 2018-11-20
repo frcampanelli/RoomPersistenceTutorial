@@ -15,7 +15,6 @@ import android.support.annotation.NonNull;
                 parentColumns = "id",
                 childColumns = "passenger_id")})
 public class Ticket {
-    // Fields can be public or private with getters and setters.
     @PrimaryKey
     @NonNull
     public String id;

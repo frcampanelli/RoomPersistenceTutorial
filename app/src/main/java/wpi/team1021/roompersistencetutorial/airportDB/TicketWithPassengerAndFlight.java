@@ -33,5 +33,4 @@ public class TicketWithPassengerAndFlight {
     public String passengerLastName;
 
     public int age;
-    //TODO Add the rest of the columns for Passengers and Flights
 }

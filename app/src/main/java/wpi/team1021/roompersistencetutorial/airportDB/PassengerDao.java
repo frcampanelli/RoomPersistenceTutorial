@@ -8,8 +8,6 @@ import android.arch.persistence.room.Query;
 
 import java.util.List;
 
-import wpi.team1021.roompersistencetutorial.db.Book;
-
 import static android.arch.persistence.room.OnConflictStrategy.IGNORE;
 
 @Dao

@@ -1,6 +1,5 @@
 package wpi.team1021.roompersistencetutorial.airportDB;
 
-
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
@@ -10,8 +9,6 @@ import android.arch.persistence.room.Update;
 
 import java.util.Date;
 import java.util.List;
-
-import wpi.team1021.roompersistencetutorial.db.Book;
 
 import static android.arch.persistence.room.OnConflictStrategy.IGNORE;
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
@@ -23,10 +20,8 @@ public interface FlightDao {
     @Query("select * from Flight where id = :id")
     Flight loadFlightById(int id);
 
-
     @Query("SELECT * FROM Flight")
     LiveData<List<Flight>> findAllFlights();
-
 
     @Query("SELECT * FROM Flight")
     List<Flight> findAllFlightsSync();
