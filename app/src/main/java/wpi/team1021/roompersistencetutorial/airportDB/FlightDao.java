@@ -11,6 +11,8 @@ import android.arch.persistence.room.Update;
 import java.util.Date;
 import java.util.List;
 
+import wpi.team1021.roompersistencetutorial.db.Book;
+
 import static android.arch.persistence.room.OnConflictStrategy.IGNORE;
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 

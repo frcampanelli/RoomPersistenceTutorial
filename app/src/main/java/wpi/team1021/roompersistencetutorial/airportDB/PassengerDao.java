@@ -1,5 +1,6 @@
 package wpi.team1021.roompersistencetutorial.airportDB;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -28,6 +29,15 @@ public interface PassengerDao {
             "WHERE Flight.destination LIKE :destination"
     )
     List<Passenger> findPassengersFlyingToDestSync(String destination);
+
+
+    @Query("SELECT Passenger.id, Passenger.name, Passenger.lastName, Passenger.age FROM Passenger " +
+            "JOIN Ticket ON Ticket.passenger_id = Passenger.id " +
+            "JOIN Flight ON Ticket.flight_id = Flight.id " +
+            "WHERE Flight.destination LIKE :destination"
+    )
+    LiveData<List<Passenger>> findPassengersFlyingToDest(String destination);
+
     @Insert(onConflict = IGNORE)
     void insertPassenger(Passenger passenger);
 
