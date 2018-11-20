@@ -18,7 +18,7 @@
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
-        <activity android:name="wpi.team1021.roompersistencetutorial.step2.JankShowUserActivity">
+        <activity android:name="wpi.team1021.roompersistencetutorial.step2.BadShowUserActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>

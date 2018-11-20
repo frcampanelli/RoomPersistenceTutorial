@@ -13,8 +13,12 @@ public class Flight {
     @PrimaryKey
     @NonNull
     public String id;
+
     public String origin;
+
     public String destination;
+
     public Date takeoffTime;
+
     public Date landingTime;
 }

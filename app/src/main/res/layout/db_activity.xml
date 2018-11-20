@@ -34,15 +34,17 @@
 
 
             <TextView
+                android:id="@+id/passengers_flying_to_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/books_borrowed_by_user"
+                android:text="@string/passengers_flying_to_dest"
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/books_tv"
+                android:id="@+id/passengers_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/passengers_flying_to_dest_desc"
                 android:paddingStart="8dp" />
 
             <Button

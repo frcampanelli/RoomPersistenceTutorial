@@ -38,7 +38,7 @@ public class CustomResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.db_activity);
-        mBooksTextView = findViewById(R.id.books_tv);
+        mBooksTextView = findViewById(R.id.passengers_tv);
 
         mShowUserViewModel = ViewModelProviders.of(this).get(CustomResultViewModel.class);
 

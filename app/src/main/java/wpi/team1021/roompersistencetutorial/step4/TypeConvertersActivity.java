@@ -40,7 +40,7 @@ public class TypeConvertersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.db_activity);
-        mBooksTextView = findViewById(R.id.books_tv);
+        mBooksTextView = findViewById(R.id.passengers_tv);
 
         // Get a reference to the ViewModel for this screen.
         mViewModel = ViewModelProviders.of(this).get(TypeConvertersViewModel.class);
