@@ -35,11 +35,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/young_users"
+                android:text="@string/flights_to_ny"
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/young_users_tv"
+                android:id="@+id/flights_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="8dp" />
