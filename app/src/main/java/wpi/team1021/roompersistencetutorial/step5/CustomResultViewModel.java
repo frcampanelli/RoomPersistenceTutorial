@@ -41,30 +41,30 @@ public class CustomResultViewModel extends AndroidViewModel {
     }
 
     private void subscribeToDbChanges() {
-        // TODO: Modify this query to show only recent flights from a specific passenger
+        // TODO: Modify this query to show only flights that land after tomorrow from Mike
         LiveData<List<TicketWithPassengerAndFlight>> loans
                 = mDb.ticketModel().findAllWithPassengerAndFlight();
 
         // Instead of exposing the list of Tickets, we can apply a transformation and expose Strings.
         mTicketsResult = Transformations.map(loans,
                 new Function<List<TicketWithPassengerAndFlight>, String>() {
-            @Override
-            public String apply(List<TicketWithPassengerAndFlight> ticketWithPassengerAndFlight) {
-                StringBuilder sb = new StringBuilder();
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd",
-                        Locale.US);
+                    @Override
+                    public String apply(List<TicketWithPassengerAndFlight> ticketWithPassengerAndFlight) {
+                        StringBuilder sb = new StringBuilder();
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd",
+                                Locale.US);
 
-                for (TicketWithPassengerAndFlight ticket : ticketWithPassengerAndFlight) {
-                    sb.append(String.format("Passenger: %s, origin: %s, destination: %s\n  " +
-                                    "(takeoff: %s, landing: %s)\n\n",
-                            ticket.passengerName,
-                            ticket.origin,
-                            ticket.destination,
-                            simpleDateFormat.format(ticket.takeoffTime),
-                            simpleDateFormat.format(ticket.landingTime)));
-                }
-                return sb.toString();
-            }
+                        for (TicketWithPassengerAndFlight ticket : ticketWithPassengerAndFlight) {
+                            sb.append(String.format("Passenger: %s, origin: %s, destination: %s\n  " +
+                                            "(takeoff: %s, landing: %s)\n\n",
+                                    ticket.passengerName,
+                                    ticket.origin,
+                                    ticket.destination,
+                                    simpleDateFormat.format(ticket.takeoffTime),
+                                    simpleDateFormat.format(ticket.landingTime)));
+                        }
+                        return sb.toString();
+                    }
         });
     }
 }
