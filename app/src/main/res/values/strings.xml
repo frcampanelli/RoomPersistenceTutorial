@@ -15,8 +15,10 @@
   -->
 
 <resources>
-    <string name="app_name">Persistence codelab</string>
+    <string name="app_name">Room Persistence Codelab</string>
     <string name="books_borrowed_by_user">Books borrowed by Mike:</string>
     <string name="refresh">Refresh</string>
     <string name="young_users">Young users:</string>
+    <string name="passengers_flying_to_dest">Passengers flying to New York:</string>
+    <string name="passengers_flying_to_dest_desc">Populates with list of passengers flying to destination</string>
 </resources>

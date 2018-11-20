@@ -7,6 +7,8 @@ import android.arch.persistence.room.Query;
 
 import java.util.List;
 
+import wpi.team1021.roompersistencetutorial.db.Book;
+
 import static android.arch.persistence.room.OnConflictStrategy.IGNORE;
 
 @Dao
@@ -20,6 +22,12 @@ public interface PassengerDao {
     @Query("select * from passenger where name = :firstName and lastName = :lastName")
     List<Passenger> findPassengerByNameAndLastName(String firstName, String lastName);
 
+    @Query("SELECT Passenger.id, Passenger.name, Passenger.lastName, Passenger.age FROM Passenger " +
+            "JOIN Ticket ON Ticket.passenger_id = Passenger.id " +
+            "JOIN Flight ON Ticket.flight_id = Flight.id " +
+            "WHERE Flight.destination LIKE :destination"
+    )
+    List<Passenger> findPassengersFlyingToDestSync(String destination);
     @Insert(onConflict = IGNORE)
     void insertPassenger(Passenger passenger);
 
@@ -34,12 +42,6 @@ public interface PassengerDao {
 
     @Delete
     void deletePassengers(Passenger passenger1, Passenger passenger2);
-
-    @Query("SELECT * FROM Passenger WHERE :age == :age") // TODO: Fix this!
-    List<Passenger> findPassengersYoungerThan(int age);
-
-    @Query("SELECT * FROM Passenger WHERE age < :age")
-    List<Passenger> findPassengersYoungerThanSolution(int age);
 
     @Query("DELETE FROM Passenger")
     void deleteAll();

@@ -88,7 +88,7 @@ public class DatabaseInitializer {
         Flight flight1 = addFlight(db, "1", "Boston", "New York", getTodayPlusDays(0), getTodayPlusDays(1));
         Flight flight2 = addFlight(db, "2", "Michigan", "Houston", getTodayPlusDays(0), getTodayPlusDays(1));
         Flight flight3 = addFlight(db, "3", "Miami", "Detroit", getTodayPlusDays(0), getTodayPlusDays(0));
-        Flight flight4 = addFlight(db, "4", "Boston", "London", getTodayPlusDays(0), getTodayPlusDays(2));
+        Flight flight4 = addFlight(db, "4", "Boston", "New York", getTodayPlusDays(0), getTodayPlusDays(2));
         addFlight(db, "5", "Los Angeles", "Hawaii", getTodayPlusDays(0), getTodayPlusDays(3));
         try {
             // Tickets are added with a delay, to have time for the UI to react to changes.
