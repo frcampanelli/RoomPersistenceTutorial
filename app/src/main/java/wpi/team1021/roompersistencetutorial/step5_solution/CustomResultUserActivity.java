@@ -1,19 +1,3 @@
-/*
- * Copyright 2017, The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package wpi.team1021.roompersistencetutorial.step5_solution;
 
 import android.arch.lifecycle.Observer;
@@ -31,37 +15,37 @@ public class CustomResultUserActivity extends AppCompatActivity {
 
     private CustomResultViewModel mShowUserViewModel;
 
-    private TextView mBooksTextView;
+    private TextView mFlightsTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.db_activity);
-        mBooksTextView = findViewById(R.id.passengers_tv);
+        setContentView(R.layout.db_activity3);
+        mFlightsTextView = findViewById(R.id.flights_tv);
 
         mShowUserViewModel = ViewModelProviders.of(this).get(CustomResultViewModel.class);
 
         populateDb();
 
-        subscribeUiLoans();
+        subscribeUiFlights();
     }
 
     private void populateDb() {
         mShowUserViewModel.createDb();
     }
 
-    private void subscribeUiLoans() {
-        mShowUserViewModel.getLoansResult().observe(this, new Observer<String>() {
+    private void subscribeUiFlights() {
+        mShowUserViewModel.getTicketsResult().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable final String result) {
-                mBooksTextView.setText(result);
+                mFlightsTextView.setText(result);
             }
         });
     }
 
-    public void onRefreshBtClicked(View view) {
+    public void onRefreshBtClicked3(View view) {
         populateDb();
-        subscribeUiLoans();
+        subscribeUiFlights();
     }
 }

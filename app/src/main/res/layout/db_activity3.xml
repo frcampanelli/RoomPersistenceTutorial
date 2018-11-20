@@ -18,30 +18,25 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <TextView
-                android:id="@+id/passengers_flying_to_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/passengers_flying_to_dest"
+                android:text="@string/flights_to_anywhere"
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/passengers_tv"
+                android:id="@+id/flights_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/passengers_flying_to_dest_desc"
                 android:paddingStart="8dp" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="onRefreshBtClicked"
+                android:onClick="onRefreshBtClicked3"
                 android:text="@string/refresh" />
 
         </LinearLayout>
-
     </ScrollView>
-
 </RelativeLayout>

@@ -1,19 +1,3 @@
-/*
- * Copyright 2017, The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package wpi.team1021.roompersistencetutorial.step5;
 
 import android.app.Application;
@@ -24,19 +8,17 @@ import android.arch.lifecycle.Transformations;
 
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import wpi.team1021.roompersistencetutorial.db.AppDatabase;
-import wpi.team1021.roompersistencetutorial.db.LoanWithUserAndBook;
-import wpi.team1021.roompersistencetutorial.db.utils.DatabaseInitializer;
+import wpi.team1021.roompersistencetutorial.airportDB.AppDatabase;
+import wpi.team1021.roompersistencetutorial.airportDB.TicketWithPassengerAndFlight;
+import wpi.team1021.roompersistencetutorial.airportDB.utils.DatabaseInitializer;
 
 
 public class CustomResultViewModel extends AndroidViewModel {
 
-    private LiveData<String> mLoansResult;
+    private LiveData<String> mTicketsResult;
 
     private AppDatabase mDb;
 
@@ -44,8 +26,8 @@ public class CustomResultViewModel extends AndroidViewModel {
         super(application);
     }
 
-    public LiveData<String> getLoansResult() {
-        return mLoansResult;
+    public LiveData<String> getTicketsResult() {
+        return mTicketsResult;
     }
 
     public void createDb() {
@@ -59,33 +41,30 @@ public class CustomResultViewModel extends AndroidViewModel {
     }
 
     private void subscribeToDbChanges() {
-        // TODO: Modify this query to show only recent loans from specific user
-        LiveData<List<LoanWithUserAndBook>> loans
-                = mDb.loanModel().findAllWithUserAndBook();
+        // TODO: Modify this query to show only recent flights from a specific passenger
+        LiveData<List<TicketWithPassengerAndFlight>> loans
+                = mDb.ticketModel().findAllWithPassengerAndFlight();
 
-        // Instead of exposing the list of Loans, we can apply a transformation and expose Strings.
-        mLoansResult = Transformations.map(loans,
-                new Function<List<LoanWithUserAndBook>, String>() {
+        // Instead of exposing the list of Tickets, we can apply a transformation and expose Strings.
+        mTicketsResult = Transformations.map(loans,
+                new Function<List<TicketWithPassengerAndFlight>, String>() {
             @Override
-            public String apply(List<LoanWithUserAndBook> loansWithUserAndBook) {
+            public String apply(List<TicketWithPassengerAndFlight> ticketWithPassengerAndFlight) {
                 StringBuilder sb = new StringBuilder();
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm",
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd",
                         Locale.US);
 
-                for (LoanWithUserAndBook loan : loansWithUserAndBook) {
-                    sb.append(String.format("%s\n  (Returned: %s)\n",
-                            loan.bookTitle,
-                            simpleDateFormat.format(loan.endTime)));
+                for (TicketWithPassengerAndFlight ticket : ticketWithPassengerAndFlight) {
+                    sb.append(String.format("Passenger: %s, origin: %s, destination: %s\n  " +
+                                    "(takeoff: %s, landing: %s)\n\n",
+                            ticket.passengerName,
+                            ticket.origin,
+                            ticket.destination,
+                            simpleDateFormat.format(ticket.takeoffTime),
+                            simpleDateFormat.format(ticket.landingTime)));
                 }
                 return sb.toString();
             }
         });
-    }
-
-    @SuppressWarnings("unused")
-    private Date getYesterdayDate() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DATE, -1);
-        return calendar.getTime();
     }
 }
