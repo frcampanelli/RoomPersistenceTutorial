@@ -17,29 +17,27 @@
 package wpi.team1021.roompersistencetutorial.step3;
 
 import android.app.Application;
-
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 
 import java.util.List;
 
-import wpi.team1021.roompersistencetutorial.db.AppDatabase;
-import wpi.team1021.roompersistencetutorial.db.Book;
-import wpi.team1021.roompersistencetutorial.db.utils.DatabaseInitializer;
+import wpi.team1021.roompersistencetutorial.airportDB.Passenger;
+import wpi.team1021.roompersistencetutorial.airportDB.AppDatabase;
+import wpi.team1021.roompersistencetutorial.airportDB.utils.DatabaseInitializer;
 
+public class PassengersFlyingToDestViewModel extends AndroidViewModel {
 
-public class BooksBorrowedByUserViewModel extends AndroidViewModel {
-
-    public final LiveData<List<Book>> books;
+    public final LiveData<List<Passenger>> passengers;
 
     private AppDatabase mDb;
 
-    public BooksBorrowedByUserViewModel(Application application) {
+    public PassengersFlyingToDestViewModel(Application application) {
         super(application);
         createDb();
 
         // TODO: Assign books to the 'findBooksBorrowedByName' query.
-        books = null;
+        passengers = null;
     }
 
     public void createDb() {
