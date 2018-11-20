@@ -35,6 +35,9 @@ public interface FlightDao {
     @Query("SELECT * FROM Flight WHERE destination = :destination")
     List<Flight> findAllFlightsByDestinationSolution(String destination);
 
+    @Query("SELECT * FROM Flight WHERE landingTime > :landingTime")
+    LiveData<List<Flight>> findAllFlightsByLandingTime(Date landingTime);
+
     @Insert(onConflict = IGNORE)
     void insertFlight(Flight Flight);
 

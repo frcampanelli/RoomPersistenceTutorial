@@ -21,16 +21,18 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
-import wpi.team1021.roompersistencetutorial.db.AppDatabase;
-import wpi.team1021.roompersistencetutorial.db.Book;
-import wpi.team1021.roompersistencetutorial.db.utils.DatabaseInitializer;
+import wpi.team1021.roompersistencetutorial.airportDB.AppDatabase;
+import wpi.team1021.roompersistencetutorial.airportDB.Flight;
+import wpi.team1021.roompersistencetutorial.airportDB.utils.DatabaseInitializer;
 
 
 public class TypeConvertersViewModel extends AndroidViewModel {
 
-    private LiveData<List<Book>> mBooks;
+    private LiveData<List<Flight>> mFlights;
 
     private AppDatabase mDb;
 
@@ -49,13 +51,16 @@ public class TypeConvertersViewModel extends AndroidViewModel {
         subscribeToDbChanges();
     }
 
-    public LiveData<List<Book>> getBooks() {
-        return mBooks;
+    public LiveData<List<Flight>> getFlights() {
+        return mFlights;
     }
 
     private void subscribeToDbChanges() {
-        // Books is a LiveData object so updates are observed.
-        // TODO: replace this with a query that finds books borrowed by Mike in the last 24h
-        mBooks = mDb.bookModel().findBooksBorrowedByName("Mike");
+        // Flights is a LiveData object so updates are observed.
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, 1);
+        Date tomorrow = calendar.getTime();
+        // TODO: replace this with a query that finds flights that land after tomorrow
+        mFlights = mDb.flightModel().findAllFlights();
     }
 }

@@ -22,4 +22,5 @@
     <string name="passengers_flying_to_dest">Passengers flying to New York:</string>
     <string name="passengers_flying_to_dest_desc">Populates with list of passengers flying to destination</string>
     <string name="flights_to_ny">Flights to New York:</string>
+    <string name="flights_to_anywhere">Flights:</string>
 </resources>

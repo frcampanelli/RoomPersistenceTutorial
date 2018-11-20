@@ -85,11 +85,6 @@ public class DatabaseInitializer {
         Passenger passenger2 = addPassenger(db, "2", "Mike", "Seaver", 12);
         addPassenger(db, "3", "Carol", "Seaver", 15);
 
-        Flight flight1 = addFlight(db, "1", "Boston", "New York", getTodayPlusDays(0), getTodayPlusDays(1));
-        Flight flight2 = addFlight(db, "2", "Michigan", "Houston", getTodayPlusDays(0), getTodayPlusDays(1));
-        Flight flight3 = addFlight(db, "3", "Miami", "Detroit", getTodayPlusDays(0), getTodayPlusDays(0));
-        Flight flight4 = addFlight(db, "4", "Seattle", "New York", getTodayPlusDays(0), getTodayPlusDays(2));
-        addFlight(db, "5", "Los Angeles", "Hawaii", getTodayPlusDays(0), getTodayPlusDays(3));
         try {
             // Tickets are added with a delay, to have time for the UI to react to changes.
 
@@ -98,6 +93,16 @@ public class DatabaseInitializer {
             Date twoDaysAgo = getTodayPlusDays(-2);
             Date lastWeek = getTodayPlusDays(-7);
             Date twoWeeksAgo = getTodayPlusDays(-14);
+
+            Flight flight1 = addFlight(db, "1", "Boston", "New York", getTodayPlusDays(-1), getTodayPlusDays(-1));
+            Thread.sleep(DELAY_MILLIS);
+            Flight flight2 = addFlight(db, "2", "Michigan", "Houston", getTodayPlusDays(0), getTodayPlusDays(1));
+            Thread.sleep(DELAY_MILLIS);
+            Flight flight3 = addFlight(db, "3", "Miami", "Detroit", getTodayPlusDays(0), getTodayPlusDays(0));
+            Thread.sleep(DELAY_MILLIS);
+            Flight flight4 = addFlight(db, "4", "Seattle", "New York", getTodayPlusDays(0), getTodayPlusDays(2));
+            Thread.sleep(DELAY_MILLIS);
+            addFlight(db, "5", "Los Angeles", "Hawaii", getTodayPlusDays(0), getTodayPlusDays(3));
 
             addTicket(db, "1", passenger1, flight1, "1A");
             Thread.sleep(DELAY_MILLIS);
