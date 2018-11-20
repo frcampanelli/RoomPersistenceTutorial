@@ -24,49 +24,50 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Locale;
 
 import wpi.team1021.R;
-import wpi.team1021.roompersistencetutorial.db.Book;
+import wpi.team1021.roompersistencetutorial.airportDB.Passenger;
 
-public class BooksBorrowedByUserActivity extends AppCompatActivity {
+public class PassengersFlyingToDestActivity extends AppCompatActivity {
 
-    private BooksBorrowedByUserViewModel mViewModel;
+    private PassengersFlyingToDestViewModel mViewModel;
 
     @SuppressWarnings("unused")
-    private TextView mBooksTextView;
+    private TextView mPassengersTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.db_activity);
-        mBooksTextView = findViewById(R.id.passengers_tv);
+        mPassengersTextView = findViewById(R.id.passengers_tv);
 
         // Get a reference to the ViewModel for this screen.
-        mViewModel = ViewModelProviders.of(this).get(BooksBorrowedByUserViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(PassengersFlyingToDestViewModel.class);
 
         // Update the UI whenever there's a change in the ViewModel's data.
-        subscribeUiBooks();
+        subscribeUiPassengers();
     }
 
     public void onRefreshBtClicked(View view) {
         mViewModel.createDb();
     }
 
-    private void subscribeUiBooks() {
+    private void subscribeUiPassengers() {
         // TODO: refresh the list of books when there's new data
         // mViewModel.books.observe(...
     }
 
     @SuppressWarnings("unused")
-    private void showBooksInUi(final @NonNull List<Book> books) {
+    private void showPassengersInUi(final @NonNull List<Passenger> passengers) {
         StringBuilder sb = new StringBuilder();
 
-        for (Book book : books) {
-            sb.append(book.title);
+        for (Passenger passenger: passengers) {
+            sb.append(String.format(Locale.US,
+                    "%s %s", passenger.name, passenger.lastName));
             sb.append("\n");
-
         }
-        mBooksTextView.setText(sb.toString());
+        mPassengersTextView.setText(sb.toString());
     }
 }

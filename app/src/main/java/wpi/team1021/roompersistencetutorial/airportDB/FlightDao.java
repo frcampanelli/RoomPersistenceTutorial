@@ -11,6 +11,8 @@ import android.arch.persistence.room.Update;
 import java.util.Date;
 import java.util.List;
 
+import wpi.team1021.roompersistencetutorial.db.Book;
+
 import static android.arch.persistence.room.OnConflictStrategy.IGNORE;
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 
@@ -34,6 +36,14 @@ public interface FlightDao {
 
     @Query("SELECT * FROM Flight WHERE destination = :destination")
     List<Flight> findAllFlightsByDestinationSolution(String destination);
+
+/*    @Query("SELECT Flight.* " +
+            "FROM Flight " +
+            "JOIN Ticket ON Ticket.flight_id = Flight.id " +
+            "JOIN Passenger ON Ticket.passenger_id = Passenger.id " +
+            "WHERE Passenger.name LIKE :passengerName"
+    )
+    LiveData<List<Flight>> findFlightsTakenByPassenger(String passengerName);*/
 
     @Insert(onConflict = IGNORE)
     void insertFlight(Flight Flight);
