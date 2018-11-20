@@ -1,3 +1,9 @@
+author: Frank Campanelli, Erick Moo Feng
+summary: Room Persistence Library Tutorial
+id: roomTutorial
+categories: common
+environment: markdown
+
 # CS4518 Topic Sruvey: Room Persistence
 Author: Frank Campanelli, Zhung Keung Moo Feng (Erick)
 
