@@ -22,7 +22,6 @@ public abstract class AppDatabase extends RoomDatabase {
             INSTANCE =
                     Room.inMemoryDatabaseBuilder(context.getApplicationContext(), AppDatabase.class)
                     // To simplify the tutorial, allow queries on the main thread.
-                    // Don't do this on a real app! See PersistenceBasicSample for an example.
                     .allowMainThreadQueries()
                     .build();
         }
